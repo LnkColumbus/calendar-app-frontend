@@ -25,11 +25,12 @@
 }
 .btnSubmit
 {
-    width: 50%;
     border-radius: 1rem;
-    padding: 1.5%;
     border: none;
     cursor: pointer;
+    margin-top: 5px;
+    padding: 1.5%;
+    width: 50%;
 }
 .login-form-1 .btnSubmit{
     color: #fff;
