@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 
 import { customStyles } from '../../helpers/modalStyle';
 import { uiCloseModal } from '../../actions/ui';
-import { eventAddNew, eventClearActive, eventUpdated } from '../../actions/events';
+import { eventClearActive, eventStartAddNew, eventStartUpdate } from '../../actions/events';
 
 Modal.setAppElement('#root');
 
@@ -20,7 +20,6 @@ const initEvent = {
     start: now.toDate(),
     end: later.toDate(),
 }
-
 
 export const CalendarModal = () => {
 
@@ -76,7 +75,6 @@ export const CalendarModal = () => {
 
     const handleSubmitForm = ( e ) => {
         e.preventDefault();
-        console.log(formValues);
 
         const momentStart = moment( start );
         const momentEnd = moment( end );
@@ -95,16 +93,9 @@ export const CalendarModal = () => {
 
         //TODO: realizar grabación a la base de datos
         if ( activeEvent ) {
-            dispatch( eventUpdated( formValues ) )
+            dispatch( eventStartUpdate( formValues ) )
         } else {
-            dispatch( eventAddNew({
-                ...formValues,
-                id: new Date().getTime(),
-                user: {
-                    _id: '123',
-                    name: 'Daniela'
-                }
-            }));
+            dispatch( eventStartAddNew( formValues ));
         }
 
         setTitleValid( true );
